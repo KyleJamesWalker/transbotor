@@ -7,7 +7,7 @@ run:
 	docker run -it --rm -v $(build_loc):/code tbot
 
 create:
-	docker create --name transbotor --restart=on-failure:5 tbot
+	docker create --name transbotor --restart=on-failure:5 -v $(build_loc):/code tbot
 
 start:
 	docker start transbotor
