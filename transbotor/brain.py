@@ -1,5 +1,6 @@
-from peewee import BooleanField, CharField, IntegerField, Model, SqliteDatabase
 import sys
+
+from peewee import BooleanField, CharField, IntegerField, Model, SqliteDatabase
 
 db = SqliteDatabase('brain.sqlite')
 
@@ -32,7 +33,7 @@ if __name__ == "__main__":
     User.insert_many([
         {"id": 0, "name": "Invlid User", "langpair": "!!|!!"},
         {"id": 120755813, "name": "Boris", "langpair": "ru|en"},
-        {"id": 93649293, "name": "Elizaveta", "langpair": "ru|en"},
+        {"id": 154784816, "name": "Elizaveta", "langpair": "ru|en"},
         {"id": 77815902, "name": "James", "langpair": "en|ru"},
         {"id": 68382468, "name": "Jill", "langpair": "en|ru"},
         {"id": 82080280, "name": "Kyle", "langpair": "en|ru", "admin": True},
