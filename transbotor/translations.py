@@ -2,6 +2,7 @@
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import re
 import requests
 
 from googletrans import Translator
@@ -214,6 +215,8 @@ languages = {
     'zu': 'Zulu',
 }
 
+RE_EMOJI = re.compile('[\U00010000-\U0010ffff]', flags=re.UNICODE)
+
 
 def translate(text, langpair="!!|!!", request_user=None):
     if langpair == "!!|!!":
@@ -239,4 +242,9 @@ def translate_with_my_memory(text, langpair, request_user):
 
 def translate_with_google(text, langpair, request_user):
     src, dest = langpair.split("|")
-    return Translator().translate(text, src=src, dest=dest).text
+    text = RE_EMOJI.sub(r'', text)
+    if len(text):
+        return Translator().translate(
+            text,
+            src=src,
+            dest=dest).text

@@ -85,11 +85,15 @@ def translate_msg(message):
                     request_pair, request_dest)
         )
 
-        w = app.send_message(
-            request_dest,
-            translate(request_text, request_pair, request_user),
-        )
-        print(w)
+        translated = translate(request_text, request_pair, request_user)
+        if translated:
+            w = app.send_message(
+                request_dest,
+                translated,
+            )
+            print(w)
+        else:
+            print('Nothing to translate (all emoji?)')
 
     except Exception as e:
         print("No Translation")
