@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 
 import requests
 
+from googletrans import Translator
+
 languages = {
     'aa': 'Afar',
     'ab': 'Abkhazian',
@@ -217,6 +219,14 @@ def translate(text, langpair="!!|!!", request_user=None):
     if langpair == "!!|!!":
         return "Sorry I don't translate for strangers({})".format(request_user)
 
+    try:
+        return translate_with_google(text, langpair, request_user)
+    except Exception:
+        print("Falling back on MyMemory Service")
+        return translate_with_mymemory(text, langpair, request_user)
+
+
+def translate_with_my_memory(text, langpair, request_user):
     params = dict(
         q=text,
         langpair=langpair,
@@ -225,3 +235,8 @@ def translate(text, langpair="!!|!!", request_user=None):
     response = requests.get("http://api.mymemory.translated.net/get",
                             params=params).json()
     return response['matches'][0]['translation']
+
+
+def translate_with_google(text, langpair, request_user):
+    src, dest = langpair.split("|")
+    return Translator().translate(text, src=src, dest=dest).text
