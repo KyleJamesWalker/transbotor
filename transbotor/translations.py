@@ -226,7 +226,7 @@ def translate(text, langpair="!!|!!", request_user=None):
         return translate_with_google(text, langpair, request_user)
     except Exception:
         print("Falling back on MyMemory Service")
-        return translate_with_mymemory(text, langpair, request_user)
+        return translate_with_my_memory(text, langpair, request_user)
 
 
 def translate_with_my_memory(text, langpair, request_user):

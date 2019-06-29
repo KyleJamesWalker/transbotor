@@ -1,5 +1,5 @@
 peewee==2.8.0
-googletrans==2.2.0
+googletrans==2.4.0
 requests==2.7.0
 telebot==0.0.3
 yamlsettings==0.2.4
