@@ -5,7 +5,7 @@ from __future__ import unicode_literals
 import sys
 import yamlsettings
 
-from telebot import TeleBot
+from telebot_router import TeleBot
 from transbotor.translations import languages, translate
 from transbotor.brain import db, User, get_user
 
